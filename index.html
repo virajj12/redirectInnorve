@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xypheria 2026 - Connect</title>
+    <link rel="icon" href="faviconInnorve.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Import Google Fonts to match the screenshot's typography */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --bg-color: #fbf8f3;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --accent-pink: #f9429e;
+            --nav-bg: #0a0a0a;
+            --grid-color: rgba(0, 0, 0, 0.04);
+        }
+
+        /* Global Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            /* Background Grid Pattern */
+            background-image:
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center top;
+        }
+
+        /* Header & Navigation */
+        header {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-top: 25px;
+        }
+
+
+
+        /* Main Content & Hero Section */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* Central Image Logo */
+        .large-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .large-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            /* Optional slight rounding for placeholder or image */
+        }
+
+        /* Concentric circles behind the logo */
+        .large-logo::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            letter-spacing: 6px;
+            color: var(--text-main);
+            word-spacing: 5px;
+        }
+
+        /* Social Links Card Module */
+        .social-links-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 30px 0;
+        }
+
+        .social-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-card h2 {
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .social-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .social-button {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            background-color: #fbfbfb;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .social-button:hover {
+            background-color: #ffffff;
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-button:hover .platform {
+            color: var(--accent-pink);
+        }
+
+        .text-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+        }
+
+        .platform {
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .platform i {
+            font-size: 1.2rem;
+        }
+
+        .cta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background-color: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-person {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            background-color: #fbfbfb;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .contact-role {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-pink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .contact-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .contact-badge {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+            background-color: #ffffff;
+            border: 1px solid #d0d0d0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-badge:hover {
+            background-color: var(--text-main);
+            color: #ffffff;
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px dashed #ddd;
+            margin-top: 40px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+
+            .tagline {
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-container">Welcome</div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="large-logo">
+                <img src="InnorveBlack.png" alt="Center Logo" />
+            </div>
+            <h1>Innorve</h1>
+            <p class="tagline">Innovation in our nerves</p>
+        </section>
+
+        <section class="social-links-container">
+            <div class="social-card">
+                <h2>WEBSITE</h2>
+                <div class="social-grid">
+                    <a href="https://innorve.ai/?utm_source=xypheria_promo" target="_blank" rel="noopener noreferrer"
+                        class="social-button">
+                        <div class="text-group">
+                            <span class="platform"><i class="fa-solid fa-globe"></i> INNORVE.AI</span>
+                            <span class="cta">VISIT NOW</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-links-container" style="margin-top: 0;">
+            <div class="social-card">
+                <h2>EXPLORE & CONNECT WITH INNORVE</h2>
+                <div class="social-grid">
+                    <a href="https://www.instagram.com/innorve_ai/" target="_blank" rel="noopener noreferrer"
+                        class="social-button instagram">
+                        <div class="text-group">
+                            <span class="platform"><i class="fa-brands fa-instagram"></i> INSTAGRAM</span>
+                            <span class="cta">FOLLOW US</span>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/company/innorve/" target="_blank" rel="noopener noreferrer"
+                        class="social-button linkedin">
+                        <div class="text-group">
+                            <span class="platform"><i class="fa-brands fa-linkedin"></i> LINKEDIN</span>
+                            <span class="cta">CONNECT WITH US</span>
+                        </div>
+                    </a>
+                    <!-- <a href="https://x.com/xypheria_cse" target="_blank" rel="noopener noreferrer"
+                        class="social-button x-twitter">
+                        <div class="text-group">
+                            <span class="platform"><i class="fa-brands fa-x-twitter"></i> X (TWITTER)</span>
+                            <span class="cta">STAY UPDATED</span>
+                        </div>
+                    </a> -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        
+        const GOOGLE_SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbxCD4JfkiO5HOcv_B1wuUhQS-wDSP-suVfLHbCdeZVAbRfBATizM1rIgu5Jun4wz3UF/exec';
+
+        // if (GOOGLE_SHEETS_API_URL === 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') {
+        //     console.error("ERROR: The Google URL is still the placeholder!");
+        // } else {
+        //     console.log("2. Google URL is set correctly.");
+        // }
+
+        function sendToGoogleSheets(data) {
+            if (GOOGLE_SHEETS_API_URL === 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') return;
+
+            fetch(GOOGLE_SHEETS_API_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+                body: JSON.stringify(data)
+            }).then(() => {
+                console.log("Fetch request successfully fired for: ", data.event);
+            }).catch(error => console.error('Tracking Fetch Error:', error));
+        }
+
+        let anonUserId = localStorage.getItem('xypheria_visitor_id');
+        if (!anonUserId) {
+            anonUserId = crypto.randomUUID();
+            localStorage.setItem('xypheria_visitor_id', anonUserId);
+        }
+
+        console.log("3. Firing Page View event...");
+        sendToGoogleSheets({
+            userId: anonUserId,
+            event: 'page_view',
+            buttonName: '',
+            destination: window.location.href
+        });
+
+        const buttons = document.querySelectorAll('.social-button, .contact-badge');
+        console.log("6. Found " + buttons.length + " trackable buttons on the page.");
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const buttonText = button.innerText.replace(/\n/g, ' ').trim();
+                const targetUrl = button.getAttribute('href');
+
+                console.log("BUTTON CLICK DETECTED: ", buttonText);
+
+                sendToGoogleSheets({
+                    userId: anonUserId,
+                    event: 'button_click',
+                    buttonName: buttonText,
+                    destination: targetUrl
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
